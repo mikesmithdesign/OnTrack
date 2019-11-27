@@ -1,0 +1,143 @@
+header {
+  height: 258px;
+  position: relative;
+  padding: 40px 25px;
+  box-sizing: border-box;
+}
+
+header::before,
+header::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+header::before {
+  background-image: linear-gradient(180deg, #3d3f49 0%, #9500ed 100%);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+header::after {
+  background-image: url("../assets/bg.jpg");
+  opacity: 0.1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  z-index: 2;
+}
+
+header .headerLocation,
+header .headerCrs {
+  display: flex;
+  position: relative;
+  z-index: 3;
+}
+
+header .headerLocation p {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  margin: 0;
+}
+
+header .headerLocation p:last-child,
+header .headerCrs h2:last-child {
+  text-align: right;
+  animation-delay: 1.3s;
+}
+
+header .headerCrs h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 32px;
+
+  animation-delay: 0.15s;
+}
+
+header .headerCrs h2:last-child {
+  animation-delay: 1.45s;
+}
+
+header .headerCrs .graphicContainer {
+  flex: 1;
+  text-align: center;
+}
+
+header .headerCrs .graphicContainer .graphicInner {
+  display: flex;
+  padding: 12px 25px 0;
+}
+
+header .headerCrs .graphicContainer ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  text-align: center;
+  padding-top: 3px;
+}
+
+header .headerCrs .graphicContainer ul li {
+  display: inline-block;
+  margin: 0 7px;
+  vertical-align: middle;
+  border-radius: 100%;
+  background: white;
+  position: relative;
+}
+
+header .headerCrs .graphicContainer ul:first-child li:last-child,
+header .headerCrs .graphicContainer ul:last-child li:first-child {
+  width: 8px;
+  height: 8px;
+}
+
+header .headerCrs .graphicContainer ul li:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.6;
+  top: 1px;
+}
+
+header .headerCrs .graphicContainer ul:first-child li:first-child,
+header .headerCrs .graphicContainer ul:last-child li:last-child {
+  width: 4px;
+  height: 4px;
+  opacity: 0.4;
+  top: 2px;
+}
+
+header .headerCrs .graphicContainer ul:first-child li:first-child {
+  animation-delay: 0.25s;
+}
+
+header .headerCrs .graphicContainer ul:first-child li:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+header .headerCrs .graphicContainer ul:first-child li:last-child {
+  animation-delay: 0.55s;
+}
+
+header .headerCrs img {
+  width: 42px;
+  animation-delay: 0.7s;
+  vertical-align: middle;
+  margin: 0 7px;
+}
+
+header .headerCrs .graphicContainer ul:last-child li:first-child {
+  animation-delay: 0.85s;
+}
+
+header .headerCrs .graphicContainer ul:last-child li:nth-child(2) {
+  animation-delay: 1s;
+}
+
+header .headerCrs .graphicContainer ul:last-child li:last-child {
+  animation-delay: 1.15s;
+}
