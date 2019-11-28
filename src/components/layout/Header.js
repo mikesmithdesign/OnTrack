@@ -13,19 +13,17 @@ function Header(props) {
       <div className="headerCrs">
         <h2 className="animated fadeIn">{startPoint.crs}</h2>
         <div className="graphicContainer">
-          <div className="graphicInner">
-            <ul>
-              <li className="animated fadeInDown"></li>
-              <li className="animated fadeInDown"></li>
-              <li className="animated fadeInDown"></li>
-            </ul>
-            <img src={train} alt="" className="animated fadeInDown" />
-            <ul>
-              <li className="animated fadeInDown"></li>
-              <li className="animated fadeInDown"></li>
-              <li className="animated fadeInDown"></li>
-            </ul>
-          </div>
+          <ul>
+            <li className="animated fadeInDown"></li>
+            <li className="animated fadeInDown"></li>
+            <li className="animated fadeInDown"></li>
+          </ul>
+          <img src={train} alt="" className="animated fadeInDown" />
+          <ul>
+            <li className="animated fadeInDown"></li>
+            <li className="animated fadeInDown"></li>
+            <li className="animated fadeInDown"></li>
+          </ul>
         </div>
         <h2 className="animated fadeIn">{endPoint.crs}</h2>
       </div>

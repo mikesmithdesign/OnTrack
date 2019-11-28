@@ -22,7 +22,7 @@ header::before {
 }
 
 header::after {
-  background-image: url("../assets/bg.jpg");
+  background-image: url("../../assets/bg.jpg");
   opacity: 0.1;
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,13 +32,20 @@ header::after {
 
 header .headerLocation,
 header .headerCrs {
-  display: flex;
+  display: grid;
   position: relative;
   z-index: 3;
 }
 
+header .headerLocation {
+  grid-template-columns: 1fr 1fr;
+}
+
+header .headerCrs {
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
 header .headerLocation p {
-  flex: 1;
   color: rgba(255, 255, 255, 0.75);
   font-size: 12px;
   margin: 0;
@@ -47,36 +54,31 @@ header .headerLocation p {
 header .headerLocation p:last-child,
 header .headerCrs h2:last-child {
   text-align: right;
-  animation-delay: 1.3s;
+  animation-delay: 0.45s;
 }
 
 header .headerCrs h2 {
   margin: 0;
   font-weight: 700;
   font-size: 32px;
-
-  animation-delay: 0.15s;
+  animation-delay: 0.05s;
+  letter-spacing: 1px;
 }
 
 header .headerCrs h2:last-child {
-  animation-delay: 1.45s;
+  animation-delay: 0.5s;
 }
 
 header .headerCrs .graphicContainer {
-  flex: 1;
-  text-align: center;
-}
-
-header .headerCrs .graphicContainer .graphicInner {
-  display: flex;
-  padding: 12px 25px 0;
+  padding: 2px 15px 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
 }
 
 header .headerCrs .graphicContainer ul {
   margin: 0;
   list-style: none;
   padding: 0;
-  display: flex;
   text-align: center;
   padding-top: 3px;
 }
@@ -100,7 +102,6 @@ header .headerCrs .graphicContainer ul li:nth-child(2) {
   width: 6px;
   height: 6px;
   opacity: 0.6;
-  top: 1px;
 }
 
 header .headerCrs .graphicContainer ul:first-child li:first-child,
@@ -108,36 +109,43 @@ header .headerCrs .graphicContainer ul:last-child li:last-child {
   width: 4px;
   height: 4px;
   opacity: 0.4;
-  top: 2px;
 }
 
 header .headerCrs .graphicContainer ul:first-child li:first-child {
-  animation-delay: 0.25s;
+  animation-delay: 0.1s;
 }
 
 header .headerCrs .graphicContainer ul:first-child li:nth-child(2) {
-  animation-delay: 0.4s;
+  animation-delay: 0.15s;
 }
 
 header .headerCrs .graphicContainer ul:first-child li:last-child {
-  animation-delay: 0.55s;
+  animation-delay: 0.2s;
 }
 
 header .headerCrs img {
   width: 42px;
-  animation-delay: 0.7s;
-  vertical-align: middle;
-  margin: 0 7px;
+  animation-delay: 0.25s;
+  padding: 0 7px;
+  margin: 0 auto;
+  position: relative;
+  top: 6px;
 }
 
 header .headerCrs .graphicContainer ul:last-child li:first-child {
-  animation-delay: 0.85s;
+  animation-delay: 0.3s;
 }
 
 header .headerCrs .graphicContainer ul:last-child li:nth-child(2) {
-  animation-delay: 1s;
+  animation-delay: 0.35s;
 }
 
 header .headerCrs .graphicContainer ul:last-child li:last-child {
-  animation-delay: 1.15s;
+  animation-delay: 0.4s;
+}
+
+@media screen and (max-width: 414px) {
+  header .headerCrs h2 {
+    font-size: 28px;
+  }
 }

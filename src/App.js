@@ -1,26 +1,105 @@
 import React, { Component } from "react";
 import "./App.css";
-import Times from "./components/Times";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Index from "./components/index/Index";
+import Times from "./components/times/Times";
+import Footer from "./components/layout/Footer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
     startPoint: {
-      crs: "EGH",
-      location: "Egham"
+      crs: "",
+      location: "From"
     },
     endPoint: {
-      crs: "WAT",
-      location: "London Waterloo"
+      crs: "",
+      location: "To"
+    },
+    destinations: [
+      { crs: "EGH", location: "Egham" },
+      { crs: "SNS", location: "Staines" },
+      { crs: "CLJ", location: "Clapham Junction" },
+      { crs: "WAT", location: "London Waterloo" }
+    ]
+  };
+  handleClose = e => {
+    e.currentTarget.parentNode.classList.add("closed");
+    e.currentTarget.parentNode.parentNode.classList.add("selected");
+    var point = e.currentTarget.getAttribute("data-point");
+
+    if (point == "startPoint") {
+      this.setState({
+        startPoint: Object.assign({}, this.state.startPoint, {
+          crs: e.currentTarget.getAttribute("data-crs"),
+          location: e.currentTarget.getAttribute("data-location")
+        })
+      });
+    } else {
+      this.setState({
+        endPoint: Object.assign({}, this.state.endPoint, {
+          crs: e.currentTarget.getAttribute("data-crs"),
+          location: e.currentTarget.getAttribute("data-location")
+        })
+      });
     }
   };
+
+  handleClear = () => {
+    this.setState({
+      startPoint: Object.assign({}, this.state.startPoint, {
+        crs: "",
+        location: "From"
+      }),
+      endPoint: Object.assign({}, this.state.endPoint, {
+        crs: "",
+        location: "To"
+      })
+    });
+
+    document
+      .querySelectorAll(".dropDownContainer.selected")
+      .forEach(function(element) {
+        element.classList.remove("selected");
+      });
+  };
+
+  componentDidUpdate() {
+    if (
+      this.state.startPoint.crs != "" &&
+      this.state.endPoint.crs != "" &&
+      document.querySelector("a").classList.contains("disabled")
+    ) {
+      document.querySelector("a.disabled").classList.remove("disabled");
+    }
+  }
+
   render() {
-    const { startPoint, endPoint } = this.state;
+    const { startPoint, endPoint, destinations } = this.state;
     return (
       <div className="App">
-        <Header startPoint={startPoint} endPoint={endPoint} />
-        <Times startPoint={startPoint} endPoint={endPoint} />
+        <Router>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Index
+                {...props}
+                startPoint={startPoint}
+                endPoint={endPoint}
+                destinations={destinations}
+                handleClose={this.handleClose}
+                handleClear={this.handleClear}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/times"
+            render={props => (
+              <Times {...props} startPoint={startPoint} endPoint={endPoint} />
+            )}
+          />
+        </Router>
       </div>
     );
   }

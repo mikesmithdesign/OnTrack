@@ -1,0 +1,239 @@
+.hero {
+  height: 50%;
+  position: relative;
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+.hero::before {
+  background-image: linear-gradient(180deg, #3d3f49 0%, #9500ed 100%);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.hero::after {
+  background-image: url("../../assets/bg.jpg");
+  opacity: 0.35;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  z-index: 2;
+  mix-blend-mode: multiply;
+}
+
+.hero .heroContent {
+  width: 175px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.hero .heroContent h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.graphicContainer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.graphicContainer ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  padding-top: 3px;
+}
+
+.graphicContainer ul li {
+  display: inline-block;
+  margin: 0 7px;
+  vertical-align: middle;
+  border-radius: 100%;
+  background: white;
+  position: relative;
+}
+
+.graphicContainer ul:first-child li:last-child,
+.graphicContainer ul:last-child li:first-child {
+  width: 8px;
+  height: 8px;
+}
+
+.graphicContainer ul li:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.6;
+}
+
+.graphicContainer ul:first-child li:first-child,
+.graphicContainer ul:last-child li:last-child {
+  width: 4px;
+  height: 4px;
+  opacity: 0.4;
+}
+
+.graphicContainer ul:first-child li:first-child {
+  animation-delay: 0.25s;
+}
+
+.graphicContainer ul:first-child li:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.graphicContainer ul:first-child li:last-child {
+  animation-delay: 0.45s;
+}
+
+img {
+  width: 42px;
+  animation-delay: 0.55s;
+  padding: 0 5px;
+  margin: 0 auto;
+  position: relative;
+  top: 6px;
+}
+
+.graphicContainer ul:last-child li:first-child {
+  animation-delay: 0.65s;
+}
+
+.graphicContainer ul:last-child li:nth-child(2) {
+  animation-delay: 0.75s;
+}
+
+.graphicContainer ul:last-child li:last-child {
+  animation-delay: 0.85s;
+}
+
+.controls {
+  padding: 30px 25px;
+  height: 50%;
+}
+
+.dropDownContainer {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.dropDownContainer .locationBox {
+  background: #43444d;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.75);
+  position: relative;
+  z-index: 3;
+}
+
+.dropDownContainer .locationBox p {
+  margin: 0;
+  font-size: 18px;
+  opacity: 0.5;
+  padding: 20px 25px;
+}
+
+.dropDownContainer .locationBox img {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+}
+
+.dropDownContainer.selected .locationBox p {
+  opacity: 1;
+}
+
+.dropDownContainer .locationList {
+  margin: 0;
+  padding: 82px 25px 0;
+  list-style: none;
+  background: #3d3f49;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  max-height: 250px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.dropDownContainer .locationList.closed {
+  padding: 0 25px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropDownContainer .locationList li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  line-height: 1;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.dropDownContainer .locationList li p {
+  margin: 0;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.dropDownContainer .locationList li:hover p {
+  color: #00ebc8;
+}
+
+.dropDownContainer .locationList li p:last-child {
+  text-align: right;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 25px;
+}
+
+.buttons button {
+  width: 100%;
+  background: #3d3f49;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
+}
+
+.buttons button {
+  text-decoration: none;
+  font-size: 18px;
+  padding: 15px 0;
+}
+
+.buttons button:hover {
+  transform: scale(1.025);
+}
+
+.buttons a {
+  text-decoration: none;
+}
+
+.buttons a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.buttons a button {
+  color: #00ebc8;
+}

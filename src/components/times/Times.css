@@ -1,0 +1,219 @@
+.timesContainer {
+  padding: 0 25px 25px;
+  position: relative;
+  z-index: 3;
+}
+
+ul.trainTimes {
+  margin: -130px 0 0;
+  height: 767px;
+  overflow-y: scroll;
+  list-style: none;
+  padding: 0;
+}
+
+ul.trainTimes li {
+  margin-bottom: 20px;
+  filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.5));
+}
+
+ul.trainTimes li .cardTop {
+  background: rgba(255, 255, 255, 0.15);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 20px;
+}
+
+.times,
+.cardTop .location {
+  display: grid;
+}
+
+.times {
+  grid-template-columns: 3fr 4fr 3fr;
+  margin-bottom: 15px;
+}
+
+.times .arrival,
+.location .end {
+  text-align: right;
+}
+.times .dots {
+  text-align: center;
+}
+
+.times .dots ul {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 9px auto 0;
+  justify-content: space-between;
+  opacity: 0.7;
+}
+
+.times .dots ul li {
+  background: white;
+  border-radius: 100%;
+  position: relative;
+  filter: none;
+}
+
+.times .dots ul li:first-child,
+.times .dots ul li:last-child {
+  width: 4px;
+  height: 4px;
+  opacity: 0.4;
+  top: 2px;
+}
+
+.times .dots ul li:nth-child(2),
+.times .dots ul li:nth-child(4) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.6;
+  top: 1px;
+}
+
+.times .dots ul li:nth-child(3) {
+  width: 8px;
+  height: 8px;
+}
+.cardTop .location {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.location .time {
+  text-align: center;
+}
+
+.times p {
+  margin: 0;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.times .delayed p {
+  color: #ff2897;
+}
+
+.times .delayed s {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.times s.fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.location p {
+  font-size: 12px;
+  margin: 0;
+  color: #00ebc8;
+}
+
+.location p span {
+  color: #cccccc;
+  opacity: 0.75;
+  font-size: 10px;
+}
+
+.location .time p {
+  font-weight: 700;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+ul.callingPoints {
+  padding: 10px 20px 15px;
+  margin: 20px -20px -20px;
+  list-style: none;
+  max-height: 450px;
+  transition: all 0.4s ease;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+ul.callingPoints.closed {
+  max-height: 0;
+  overflow: hidden;
+  margin: 0 -20px;
+  padding: 0;
+  opacity: 0;
+}
+
+ul.callingPoints li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
+  padding: 4px 0;
+  filter: none;
+}
+
+ul.callingPoints li:last-child {
+  border-bottom: none;
+}
+
+ul.callingPoints li p {
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.75;
+}
+
+ul.callingPoints li:last-child p {
+  font-weight: 700;
+  opacity: 1;
+}
+
+ul.callingPoints li p .delayed s {
+  opacity: 0.5;
+}
+
+ul.callingPoints li p:last-child {
+  text-align: right;
+}
+
+ul.trainTimes li .cardBottom {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: #3d3f49;
+  padding: 8px 20px;
+  font-size: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.cardBottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  opacity: 0.8;
+}
+
+.cardBottom p span.operator {
+  color: #fff;
+}
+
+.cardBottom p span.location {
+  color: #00ebc8;
+}
+
+.cardBottom button {
+  font-weight: 700;
+  color: #ff2897;
+  text-decoration: none;
+  font-size: 18px;
+  background: none;
+  border: none;
+  height: auto;
+  width: auto;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.cardBottom button.spin {
+  transform: rotate(45deg);
+}
