@@ -8,14 +8,14 @@ function CallingPoints(props) {
       }
     }
   }
-  const { item } = props;
+  const { item, endPoint } = props;
   return (
     <ul className="callingPoints closed">
       {item.subsequentCallingPointsList[0].subsequentCallingPoints
         .slice(
           0,
           search(
-            "CLJ",
+            `${endPoint.crs}`,
             item.subsequentCallingPointsList[0].subsequentCallingPoints
           )
         )

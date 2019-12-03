@@ -6,7 +6,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="disabled fadeIn ">
-        <Link to="/">
+        <Link to={process.env.PUBLIC_URL + "/"}>
           <button>Back</button>
         </Link>
       </footer>

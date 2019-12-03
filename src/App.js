@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Index from "./components/index/Index";
 import Times from "./components/times/Times";
-import Footer from "./components/layout/Footer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
@@ -19,15 +18,17 @@ class App extends Component {
       { crs: "EGH", location: "Egham" },
       { crs: "SNS", location: "Staines" },
       { crs: "CLJ", location: "Clapham Junction" },
-      { crs: "WAT", location: "London Waterloo" }
-    ]
+      { crs: "WAT", location: "London Waterloo" },
+      { crs: "YAL", location: "Yalding" }
+    ],
+    offset: [20]
   };
   handleClose = e => {
     e.currentTarget.parentNode.classList.add("closed");
     e.currentTarget.parentNode.parentNode.classList.add("selected");
     var point = e.currentTarget.getAttribute("data-point");
 
-    if (point == "startPoint") {
+    if (point === "startPoint") {
       this.setState({
         startPoint: Object.assign({}, this.state.startPoint, {
           crs: e.currentTarget.getAttribute("data-crs"),
@@ -65,38 +66,52 @@ class App extends Component {
 
   componentDidUpdate() {
     if (
-      this.state.startPoint.crs != "" &&
-      this.state.endPoint.crs != "" &&
+      this.state.startPoint.crs !== "" &&
+      this.state.endPoint.crs !== "" &&
       document.querySelector("a").classList.contains("disabled")
     ) {
       document.querySelector("a.disabled").classList.remove("disabled");
     }
   }
 
+  handleRangeChange = values => {
+    this.setState({
+      offset: values
+    });
+    console.log(this.state.offset);
+  };
+
   render() {
-    const { startPoint, endPoint, destinations } = this.state;
+    const { startPoint, endPoint, destinations, offset } = this.state;
     return (
       <div className="App">
         <Router>
           <Route
             exact
-            path="/"
+            path={process.env.PUBLIC_URL + "/"}
             render={props => (
               <Index
                 {...props}
                 startPoint={startPoint}
                 endPoint={endPoint}
+                offset={offset}
                 destinations={destinations}
                 handleClose={this.handleClose}
                 handleClear={this.handleClear}
+                handleRangeChange={this.handleRangeChange}
               />
             )}
           />
           <Route
             exact
-            path="/times"
+            path={process.env.PUBLIC_URL + "/Times"}
             render={props => (
-              <Times {...props} startPoint={startPoint} endPoint={endPoint} />
+              <Times
+                {...props}
+                startPoint={startPoint}
+                endPoint={endPoint}
+                offset={offset}
+              />
             )}
           />
         </Router>

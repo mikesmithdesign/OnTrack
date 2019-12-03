@@ -15,7 +15,7 @@ class Times extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://api.departureboard.io/api/v2.0/getDeparturesByCRS/${this.props.startPoint.crs}/?apiKey=68eaf87e-6cc1-49ca-9e95-f8f1da42ac99&filterStation=${this.props.endPoint.crs}&numServices=5`
+        `https://api.departureboard.io/api/v2.0/getDeparturesByCRS/${this.props.startPoint.crs}/?apiKey=68eaf87e-6cc1-49ca-9e95-f8f1da42ac99&timeOffset=${this.props.offset}&filterStation=${this.props.endPoint.crs}&numServices=5`
       )
       .then(res => {
         console.log(res.data.trainServices);
@@ -25,7 +25,12 @@ class Times extends Component {
 
     axios
       .get(
-        `https://api.departureboard.io/api/v2.0/getArrivalsByCRS/${this.props.endPoint.crs}/?apiKey=68eaf87e-6cc1-49ca-9e95-f8f1da42ac99&timeOffset=20&filterStation=${this.props.startPoint.crs}&numServices=5`
+        `https://api.departureboard.io/api/v2.0/getArrivalsByCRS/${
+          this.props.endPoint.crs
+        }/?apiKey=68eaf87e-6cc1-49ca-9e95-f8f1da42ac99&timeOffset=${this.props
+          .offset + 20}&filterStation=${
+          this.props.startPoint.crs
+        }&numServices=5`
       )
       .then(res => {
         console.log(res.data.trainServices);
@@ -48,27 +53,29 @@ class Times extends Component {
     return (
       <div className="timesContainer">
         <ul className="trainTimes">
-          {trains.map((item, delay) => (
-            <li
-              key={item.serviceID}
-              className="animated fadeInUp"
-              style={{ animationDelay: `${0.4 + delay * 0.15}s` }}
-            >
-              <div className="cardTop">
-                <CardTimes item={item} delay={delay} endPoint={endPoint} />
-                <CardLocations
-                  item={item}
-                  arrivals={arrivals}
-                  endPoint={endPoint}
-                  startPoint={startPoint}
-                />
-                <CallingPoints item={item} />
-              </div>
-              <CardBottom item={item}>
-                <button onClick={this.handleClick}>+</button>
-              </CardBottom>
-            </li>
-          ))}
+          {trains !== null
+            ? trains.map((item, delay) => (
+                <li
+                  key={item.serviceID}
+                  className="animated fadeInUp"
+                  style={{ animationDelay: `${0.4 + delay * 0.15}s` }}
+                >
+                  <div className="cardTop">
+                    <CardTimes item={item} delay={delay} endPoint={endPoint} />
+                    <CardLocations
+                      item={item}
+                      arrivals={arrivals}
+                      endPoint={endPoint}
+                      startPoint={startPoint}
+                    />
+                    <CallingPoints item={item} endPoint={endPoint} />
+                  </div>
+                  <CardBottom item={item}>
+                    <button onClick={this.handleClick}>+</button>
+                  </CardBottom>
+                </li>
+              ))
+            : "No results"}
         </ul>
       </div>
     );

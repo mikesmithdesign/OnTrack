@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import "./Index.css";
 import marker from "./marker.svg";
 import signpost from "./signpost.svg";
-import train from "../layout/train.svg";
+import Hero from "./Hero";
+import Dropdown from "./Dropdown";
+import Rangeslider from "./Rangeslider";
 
 class Index extends Component {
   handleClick = e => {
@@ -18,79 +20,49 @@ class Index extends Component {
       endPoint,
       destinations,
       handleClose,
-      handleClear
+      handleClear,
+      offset,
+      handleRangeChange
     } = this.props;
     return (
       <React.Fragment>
-        <div className="hero">
-          <div className="heroContent">
-            <h1 className="animated fadeIn">OnTrack</h1>
-            <div className="graphicContainer">
-              <ul>
-                <li className="animated fadeInDown"></li>
-                <li className="animated fadeInDown"></li>
-                <li className="animated fadeInDown"></li>
-              </ul>
-              <img src={train} alt="" className="animated fadeInDown" />
-              <ul>
-                <li className="animated fadeInDown"></li>
-                <li className="animated fadeInDown"></li>
-                <li className="animated fadeInDown"></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <Hero />
         <div className="controls">
-          <div
-            className="dropDownContainer animated fadeInUp"
-            style={{ zIndex: 2 }}
-          >
-            <div className="locationBox" onClick={this.handleClick}>
-              <p>{startPoint.location}</p> <img src={marker} alt="" />
-            </div>
-            <ul className="locationList closed">
-              {destinations.map(item => (
-                <li
-                  onClick={handleClose}
-                  key={item.crs}
-                  data-location={item.location}
-                  data-crs={item.crs}
-                  data-point="startPoint"
-                >
-                  <p>{item.location}</p>
-                  <p>({item.crs})</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="dropDownContainer animated  fadeInUp"
-            style={{ zIndex: 1 }}
-          >
-            <div className="locationBox" onClick={this.handleClick}>
-              {" "}
-              <p>{endPoint.location}</p> <img src={signpost} alt="" />
-            </div>
-            <ul className="locationList closed">
-              {destinations.map(item => (
-                <li
-                  onClick={handleClose}
-                  key={item.crs}
-                  data-location={item.location}
-                  data-crs={item.crs}
-                  data-point="endPoint"
-                >
-                  <p>{item.location}</p>
-                  <p>({item.crs})</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Dropdown
+            location={startPoint}
+            icon={marker}
+            destinations={destinations}
+            handleClose={handleClose}
+            handleClick={this.handleClick}
+            zIndex={2}
+            delay=".25s"
+            dataPoint="startPoint"
+          />
+          <Dropdown
+            location={endPoint}
+            icon={signpost}
+            destinations={destinations}
+            handleClose={handleClose}
+            handleClick={this.handleClick}
+            zIndex={1}
+            delay=".35s"
+            dataPoint="endPoint"
+          />
+          <Rangeslider offset={offset} handleRangeChange={handleRangeChange} />
+
           <div className="buttons">
-            <button onClick={handleClear} className="animated fadeInUp">
+            <button
+              onClick={handleClear}
+              className="animated fadeInUp"
+              style={{ animationDelay: ".55s" }}
+            >
               Clear
             </button>
-            <Link to="times" className="disabled animated fadeInUp">
+            <Link
+              to={process.env.PUBLIC_URL + "/Times"}
+              className="disabled animated fadeInUp"
+              style={{ animationDelay: ".6s" }}
+            >
               <button>Go</button>
             </Link>
           </div>

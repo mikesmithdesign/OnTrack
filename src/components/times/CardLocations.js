@@ -22,34 +22,65 @@ function CardLocations(props) {
       </div>
       <div className="time">
         <p>
-          {(new Date(
-            "01/01/2007 " +
-              item.subsequentCallingPointsList[0].subsequentCallingPoints
-                .filter(key => key.crs === endPoint.crs)
-                .map(key =>
+          {isNaN(
+            (new Date(
+              "01/01/2007 " +
+                item.subsequentCallingPointsList[0].subsequentCallingPoints
+                  .filter(key => key.crs === endPoint.crs)
+                  .map(key =>
+                    (function() {
+                      switch (key.et) {
+                        case "On time":
+                          return key.st;
+                        default:
+                          return key.et;
+                      }
+                    })()
+                  )
+            ).getTime() -
+              new Date(
+                "01/01/2007 " +
                   (function() {
-                    switch (key.et) {
+                    switch (item.etd) {
                       case "On time":
-                        return key.st;
+                        return item.std;
                       default:
-                        return key.et;
+                        return item.etd;
                     }
                   })()
-                )
-          ).getTime() -
-            new Date(
-              "01/01/2007 " +
-                (function() {
-                  switch (item.etd) {
-                    case "On time":
-                      return item.std;
-                    default:
-                      return item.etd;
-                  }
-                })()
-            ).getTime()) /
-            1000 /
-            60}
+              ).getTime()) /
+              1000 /
+              60
+          )
+            ? "NA"
+            : (new Date(
+                "01/01/2007 " +
+                  item.subsequentCallingPointsList[0].subsequentCallingPoints
+                    .filter(key => key.crs === endPoint.crs)
+                    .map(key =>
+                      (function() {
+                        switch (key.et) {
+                          case "On time":
+                            return key.st;
+                          default:
+                            return key.et;
+                        }
+                      })()
+                    )
+              ).getTime() -
+                new Date(
+                  "01/01/2007 " +
+                    (function() {
+                      switch (item.etd) {
+                        case "On time":
+                          return item.std;
+                        default:
+                          return item.etd;
+                      }
+                    })()
+                ).getTime()) /
+              1000 /
+              60}
           m
         </p>
       </div>
@@ -61,7 +92,7 @@ function CardLocations(props) {
               key =>
                 key.sta ===
                   search(
-                    "CLJ",
+                    `${endPoint.crs}`,
                     item.subsequentCallingPointsList[0].subsequentCallingPoints
                   ).st &&
                 key.origin[0].locationName === item.origin[0].locationName

@@ -201,10 +201,23 @@ img {
   text-align: right;
 }
 
+.when {
+  margin-top: 20px;
+  padding: 0 5px;
+}
+
+label {
+  font-weight: 700;
+  font-size: 24px;
+  display: block;
+  margin: 0 -5px 30px;
+}
+
 .buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 25px;
+  margin-top: 50px;
 }
 
 .buttons button {
@@ -230,8 +243,11 @@ img {
 }
 
 .buttons a.disabled {
-  opacity: 0.5;
   pointer-events: none;
+}
+
+.buttons a.disabled button {
+  opacity: 0.5 !important;
 }
 
 .buttons a button {
