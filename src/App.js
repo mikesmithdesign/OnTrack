@@ -18,8 +18,7 @@ class App extends Component {
       { crs: "EGH", location: "Egham" },
       { crs: "SNS", location: "Staines" },
       { crs: "CLJ", location: "Clapham Junction" },
-      { crs: "WAT", location: "London Waterloo" },
-      { crs: "YAL", location: "Yalding" }
+      { crs: "WAT", location: "London Waterloo" }
     ],
     offset: [20]
   };

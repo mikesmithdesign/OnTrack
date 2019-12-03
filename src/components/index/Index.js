@@ -49,7 +49,6 @@ class Index extends Component {
             dataPoint="endPoint"
           />
           <Rangeslider offset={offset} handleRangeChange={handleRangeChange} />
-
           <div className="buttons">
             <button
               onClick={handleClear}
